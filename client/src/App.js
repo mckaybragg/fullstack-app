@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import axios from 'axios';
+import { RSA_PKCS1_OAEP_PADDING } from 'constants';
 
 class App extends Component {
 
@@ -58,6 +59,28 @@ class App extends Component {
     })
   };
 
+  deleteFromDB = idToDelete => {
+    let objectIdToDelete = null;
+    
+    this.state.data.forEach(dat => {
+      if (String(dat.id) === String(idToDelete)) {
+        objectIdToDelete = dat.id;
+      }
+    });
+
+    axios({
+      url: 'http://localhost:3001/api/deleteData',
+      method: 'DELETE',
+      data: {
+        id: objectIdToDelete
+      }
+    }).then((response) => {
+      console.log(response);
+    }).catch((error) => {
+      console.log(error);
+    });
+  };
+
   renderListItems() {
     const { data } = this.state;
 
@@ -84,8 +107,12 @@ class App extends Component {
         </div>
 
         <div>
-          <input />
-          <button>DELETE</button>
+          <input
+            type='text'
+            placeholder='Enter ID of item to Delete'
+            onChange={event => this.setState({ idToDelete: event.target.value })}
+           />
+          <button onClick={() => this.deleteFromDB(this.state.idToDelete)}>DELETE</button>
         </div>
 
         <div>
