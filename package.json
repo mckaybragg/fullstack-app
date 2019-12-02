@@ -1,0 +1,22 @@
+{
+  "name": "fullstack_app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "concurrently \"cd backend && node server.js\" \"cd client && npm start\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mckaybragg/fullstack-app.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mckaybragg/fullstack-app/issues"
+  },
+  "homepage": "https://github.com/mckaybragg/fullstack-app#readme",
+  "dependencies": {
+    "concurrently": "^5.0.0"
+  }
+}
